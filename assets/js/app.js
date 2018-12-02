@@ -65,7 +65,7 @@ $(document).ready(function () {
 });
 
 $.ajax({
-    method: "GET", url: "http://localhost:8000/servidor.py",
+    method: "GET", url: "http://localhost:8000/htbin/servidor.py",
     success: function (data, text) {
         list = data;
 
