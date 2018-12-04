@@ -20,7 +20,7 @@ $(document).ready(function () {
             //var genreInput = $("#genres option:selected").val();
             var e = document.getElementById("genres");
             var genreInput = e.options[e.selectedIndex].value;
-           
+
             console.log("Current Location: " + origin);
             console.log("Destination: " + destinationInput);
 
@@ -39,10 +39,10 @@ $(document).ready(function () {
                     sTrip = "0" + sTrip;
                 }
                 console.log("Trip-Time= " + mTrip + ":" + sTrip)
-                $("#time").text("Time to arrival "  + mTrip + ":" + sTrip);
+                $("#time").text("Time to arrival " + mTrip + ":" + sTrip);
                 var available = duration;
                 var selected = "";
-
+                $("#genero").text(genreInput);
                 console.log("Genre: " + genreInput);
 
                 jQuery.each(list, function (i, val) {
@@ -65,10 +65,12 @@ $(document).ready(function () {
 });
 
 $.ajax({
-    method: "GET", url: "http://localhost:8000/htbin/servidor.py",
-    success: function (data, text) {
-        list = data;
+    data: { "cmd": "genres" },
+    method: "GET", url: "https://cors-anywhere.herokuapp.com/http://netcore89.pythonanywhere.com/playlist",
 
+     /*success: function (data, text) {
+       list = data;
+        console.log(data);
         var arregloRepetido = [];
         var options = "<select>";
         jQuery.each(list, function (i, val) {
@@ -87,7 +89,7 @@ $.ajax({
     },
     error: function (request, status, error) {
         console.log("error", error);
-    }
+    }*/
 });
 
 

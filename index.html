@@ -6,39 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/assets/js/app.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <title>VMP</title>
 </head>
 
 <body>
-    <div class="header">
-        <div class="container">
+    <ul class="container">
 
-            <input id="destination-input" class="controls" type="text" placeholder="Enter a destination" autocomplete="off">
+        <li>
+            <div id="currentloc"></div>
+        </li>
 
-            <select id="genres"></select>
+        <li>
+            <div class="form-row">
+                <label for="Destination">Destination:</label>
+                <input type="text" id="destination-input">
+            </div>
+        </li>
 
-            <button id="calculate-time" class="btn">Calculate</button>
+        <li> <select id="genres"></select></li>
 
-            <div id="time"></div>
+        <li> <button id="calculate-time" class="btn">Calculate</button></li>
 
-        </div>
-    </div>
+    </ul>
 
     <div id="logo">
-        <img src="/assets/images/logo.png" alt="logo" />
+        <img src="assets/images/logo.png" alt="logo" />
     </div>
 
-    <div class="d-flex flex-row">
-       
-            </div>
-    </div>
+    <div class="content"><!-- flex container -->
+
+        <div class="box" id="playlist"><!-- flex item -->
+            <p>DIV #1</p>
+        </div>
     
+        <div class="box" id="time"><!-- flex item -->
+            <p>DIV #2</p>
+        </div>
+       
+    </div>
+    <div class="content"><!-- flex container -->
+
+        <div class="box" id="genero"><!-- flex item -->
+            <p>DIV #3</p>
+        </div>
+    
+        <div class="box" id="cover"><!-- flex item -->
+            <p>DIV #4</p>
+        </div>
+    
+    </div>
 </body>
 
 </html>

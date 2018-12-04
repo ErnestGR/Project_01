@@ -1,70 +1,82 @@
 body, html {
-    background-color: linear-gradient(#410e4f, #191919);
-    height: 100%;
-      /* The image used */
-      background-image: url("/assets/images/bg.jpg");
-      /* Full height */
-      height: 100%; 
-  
-      /* Center and scale the image nicely */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-}
-#calculate-time{
-    justify-content: space-around;
-    border-radius: 4px;
-    border-color: #2c9c91;
-    border-style: solid;
-    background-color: #2c9c91;
-}
-.header{
-    width: 100%;
-    height: 80px;
-    margin: 0;
-    border-top: 2px solid #2c9c91;
-    background-color: #191919;
-}
-.container{
-    width: 960px;
-    height: 20px;
-    padding: 20px;
-    margin: 0 auto;
-}   
-#destination-input{
-    justify-content: space-around;
-}
-#genres{
-    justify-content: space-around;
-    
-}
-#logo{
-    width: 960px;
-    margin: 0 auto;
-}
-img{
-    display:block;
-    margin:auto;
-}
-.d-flex{
-    color: #2c9c91;
-    display: flex;
-    justify-content: center;
-    width: 960px;
-    padding: 40px;
-    margin: 0 auto;
-}
-.containertwo{
-    width: 960px;
-    height: 20px;
-    padding: 20px;
-    margin: 0 auto;
-}   
-#time{
-float: right;
-color:white;
-justify-content: space-around;
-font-weight: bold;
-font-size: 25px;
+    background-image: linear-gradient(#191919,#400040);
+    font-family: 'Shadows Into Light', cursive;
 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    margin: 0;
 }
+    .container{
+     
+      list-style: none;
+      margin: 0 auto 0 auto; 
+      padding: 15px;
+      
+      background: #26282b;
+      border-bottom-color: #158f96;
+      border-style: solid;
+      border-width: 2px;
+      
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      
+      -webkit-flex-flow: row wrap;
+      justify-content: flex-end;
+    }
+    .form-row, #currentloc, #genres, #calculate-time{
+      padding: 10px;
+      margin-right: 20px;
+    }
+    label{
+        color:white;
+    }
+     .btn{
+    background-color: #158f96;
+    border-radius: 5px;
+     }
+    #logo{
+        display: flex;
+        width: 960px;
+        margin: 0 auto;
+    }
+    img{
+        text-align: center; 
+    }
+    .boxes-display{
+        width: 960px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+    }
+    .inner{
+        padding: 20px;
+        background-color: green;
+        box-sizing: 20px;
+        flex-basis: 30%;
+    }
+    .content {
+        width: 960px;
+        margin: 0 auto;
+        display: flex; /* establish flex container */
+            flex-direction: row; /* make main axis horizontal (default value) */
+            justify-content: center; /* center items horizontally, in this case */
+            align-items: center; /* center items vertically, in this case */
+    
+    }
+    .box {
+        width: 30%;
+        margin: 2px;
+        text-align: center;
+        border: 1px solid #158f96; /* for demo purposes */
+        color: whitesmoke;
+        height: 300px; /* for demo purposes */
+    }  
+    p{
+    font-size: 80px;    
+    }
