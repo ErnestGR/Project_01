@@ -1,19 +1,25 @@
 
 var list = {};
 
+// Playlist API
+let API = "https://cors-anywhere.herokuapp.com/http://netcore89.pythonanywhere.com/playlist";
+
+
 $(document).ready(function () {
 
     $("#calculate-time").on("click", function () {
-        var x = document.getElementById("demo");
+        var x = document.getElementById("currentloc");
         function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
+                // Get user location and then generate calculate trip time
+                navigator.geolocation.getCurrentPosition(doCalculate);
             } else {
                 x.innerHTML = "Geolocation is not supported by this browser.";
             }
         }
 
-        function showPosition(position) {
+        // function showPosition(position) {
+        function doCalculate(position) {
 
             var origin = position.coords.latitude + "," + position.coords.longitude;
             var destinationInput = $("#destination-input").val();
@@ -26,6 +32,7 @@ $(document).ready(function () {
 
             var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + destinationInput + "&key=AIzaSyBxR_xcjNZab-IUvUTGn6vYdm9QR6d_ANE";
 
+            // With Origin and Destination, call google.maps and get trip time.
             $.ajax({
                 url: queryURL,
                 method: "GET",
@@ -40,45 +47,74 @@ $(document).ready(function () {
                 }
                 console.log("Trip-Time= " + mTrip + ":" + sTrip)
                 $("#time").text("Time to arrival " + mTrip + ":" + sTrip);
+                $("#currentloc").text("Origin: " + response.origin_addresses);
                 var available = duration;
-                var selected = "";
-                $("#genero").text(genreInput);
+                var selected = [];
+
+                // Call API to list songs by genre (shuffled)
                 console.log("Genre: " + genreInput);
+                $.ajax({
+                    method: "GET",
+                      url: API,
+                      data: { "cmd": "list",
+                              "genre": genreInput,
+                            },
 
-                jQuery.each(list, function (i, val) {
-                    var minutes = Math.floor(val.duration / 60);
-                    var seconds = val.duration - minutes * 60;
-                    if (seconds < 10) {
-                        seconds = "0" + seconds;
-                    }
-                    if (val.duration < available && val.genre == genreInput) {
+                    success: function (data, text) {
+                        list = data;
+                        console.log("songs:",list);
 
-                        available = available - val.duration;
-                        selected = selected + val.artist + " - " + val.name + " - " + minutes + ":" + seconds;
+                        // Process songs list
+                        jQuery.each(list, function (i, val) {
+                            var minutes = Math.floor(val.duration / 60);
+                            var seconds = val.duration - minutes * 60;
+                            if (seconds < 10) {
+                                seconds = "0" + seconds;
+                            }
+
+                            // Check if song fits in available time
+                            if (val.duration < available) {
+                                available = available - val.duration;
+
+                                selected.push({"artist": val.artist, "name": val.name, "duration": minutes + ":" + seconds});
+                            }
+                        });
+
+                        var tr;
+                        for (var i = 0; i < selected.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + selected[i].artist + "</td>");
+                            tr.append("<td>" + selected[i].name + "</td>");
+                            tr.append("<td>" + selected[i].duration + "</td>");
+
+                            $('table').append(tr);
+                        }
+
+                        console.log("playlist: " + " " + selected + " ");
+
+
+                    },
+                    error: function (request, status, error) {
+                        console.log("Error while getting songs list", error);
                     }
                 });
-                console.log("playlist: " + " " + selected + " ");
-            });
-        }
+
+        });
+}
         getLocation();
     })
 });
 
 $.ajax({
-    data: { "cmd": "genres" },
-    method: "GET", url: "https://cors-anywhere.herokuapp.com/http://netcore89.pythonanywhere.com/playlist",
 
-     /*success: function (data, text) {
-       list = data;
+    method: "GET",
+      url: API,
+      data: { "cmd": "genres"},
+
+    success: function (data, text) {
+        list = data;
         console.log(data);
-        var arregloRepetido = [];
-        var options = "<select>";
-        jQuery.each(list, function (i, val) {
-            arregloRepetido.push(val.genre);
-        });
-        var arregloUnico = arregloRepetido.filter(function (element, index, self) {
-            return index == self.indexOf(element);
-        });
+        var arregloUnico = list
         arregloUnico.map((genre) => {
             var option = $("<option>");
             option.text(genre);
@@ -89,7 +125,5 @@ $.ajax({
     },
     error: function (request, status, error) {
         console.log("error", error);
-    }*/
+    }
 });
-
-

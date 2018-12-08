@@ -1,6 +1,6 @@
 body, html {
     background-image: linear-gradient(#191919,#400040);
-    font-family: 'Shadows Into Light', cursive;
+    font-family: Arial, Helvetica, sans-serif;
 
     /* Center and scale the image nicely */
     background-position: center;
@@ -25,13 +25,16 @@ body, html {
       display: -ms-flexbox;
       display: -webkit-flex;
       display: flex;
-      
-      -webkit-flex-flow: row wrap;
       justify-content: flex-end;
+      -webkit-flex-flow: row wrap;
+      
     }
     .form-row, #currentloc, #genres, #calculate-time{
       padding: 10px;
       margin-right: 20px;
+    }
+    .form-row, #genres, #calculate-time{
+        margin-left: auto;
     }
     label{
         color:white;
@@ -40,13 +43,17 @@ body, html {
     background-color: #158f96;
     border-radius: 5px;
      }
+     #currentloc{
+        margin-right: auto;
+        color: white;
+        }
+
     #logo{
+        margin-top: 40px;
         display: flex;
         width: 960px;
         margin: 0 auto;
-    }
-    img{
-        text-align: center; 
+        justify-content: center; 
     }
     .boxes-display{
         width: 960px;
@@ -80,3 +87,8 @@ body, html {
     p{
     font-size: 80px;    
     }
+    tr{
+    color:white;
+    text-align: center;
+    }
+  
